@@ -224,7 +224,10 @@ module Danger
             context: "danger/#{danger_id}",
             target_url: details_url
           })
-        rescue
+        rescue => e
+          $stderr.puts e.message
+          $stderr.puts e.backtrace.join("\n")
+
           # This usually means the user has no commit access to this repo
           # That's always the case for open source projects where you can only
           # use a read-only GitHub account
